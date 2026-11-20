@@ -27,7 +27,7 @@ Tras la limpieza y el balanceo, el dataset final tiene 5.354 mensajes: 5.155 de 
 2. **Extracción de características:** embeddings de oraciones con el modelo Sentence-BERT multilingüe `paraphrase-multilingual-MiniLM-L12-v2` (transfer learning, 384 dimensiones), con TF-IDF como línea base.
 3. **Pipelines de scikit-learn** con escalado, selección de características de tipo *filter* (`SelectKBest` con ANOVA F) y clasificador, para evitar el *data leakage*.
 4. **Optimización de hiperparámetros** con Optuna (TPE) y *repeated stratified k-fold*, con curva de validación y curva de aprendizaje.
-5. **Comparación estadística** de regresión logística y SVM con 10 × 10 *repeated k-fold*, test de Wilcoxon y t-test corregido de Nadeau y Bengio, y evaluación final en un conjunto de prueba separado.
+5. **Comparación estadística** de regresión logística (lineal) y SVM con kernel RBF (no lineal) con 10 × 10 *repeated k-fold*, test de Wilcoxon y t-test corregido de Nadeau y Bengio, y evaluación final en un conjunto de prueba separado.
 6. **Experimentos complementarios:** TF-IDF frente a Sentence-BERT y aporte de los datos sintéticos (modelo entrenado solo con GoEmotions frente a GoEmotions + sintéticos).
 7. **Visualización con t-SNE** del espacio de características, coloreado por clase y por fuente.
 
