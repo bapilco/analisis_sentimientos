@@ -33,10 +33,10 @@ Tras la limpieza y el balanceo, el dataset final tiene 5.354 mensajes: 5.155 de 
 
 ## Resultados principales
 
-- Modelo elegido: [COMPLETAR]
-- F1-macro en el conjunto de prueba final: [COMPLETAR]
-- Sentence-BERT frente a TF-IDF: [COMPLETAR]
-- Aporte de los datos sintéticos: [COMPLETAR]
+- Modelo elegido: regresión logística sobre embeddings de Sentence-BERT (`C` ≈ 0,0027, sin selección de características). La SVM con kernel RBF obtuvo un F1-macro algo mayor en el 10 × 10 (0,562 frente a 0,553), pero la diferencia no es significativa según el t-test corregido de Nadeau y Bengio (p = 0,162), así que se eligió el modelo más simple y rápido.
+- F1-macro en el conjunto de prueba final: 0,565, coherente con el 0,553 de la validación cruzada 10 × 10. Alegría es la clase mejor reconocida (F1 = 0,689) y neutral la peor (0,443); la confusión más frecuente es entre frustración y enojo.
+- Sentence-BERT frente a TF-IDF: +0,059 de F1-macro en el 10 × 10 (0,553 frente a 0,494; IC 95 % [0,039; 0,080]), significativo en ambos tests (p < 0,001, también con el t-test corregido).
+- Aporte de los datos sintéticos: mejoran el F1-macro en los mensajes educativos (0,652 frente a 0,495 en el CV; 0,564 frente a 0,472 en la prueba final), pero la mejora global no es significativa (+0,005; t-test corregido p = 0,064). Como los mensajes educativos de prueba los generaron los mismos modelos (GPT y Gemini), esa mejora no demuestra una adaptación a mensajes de estudiantes reales.
 
 ## Estructura del repositorio
 
@@ -63,5 +63,5 @@ Python 3 con: `pandas`, `numpy`, `scikit-learn`, `scipy`, `matplotlib`, `seaborn
 
 ## Autores y curso
 
-- Autores: [COMPLETAR]
-- Curso: [COMPLETAR: nombre del curso de Aprendizaje Supervisado], Universidad San Francisco de Quito (USFQ)
+- Autores: [COMPLETAR: nombres de los autores]
+- Curso: MMIA 6012 Aprendizaje Supervisado (profesor Felipe Grijalva Arévalo), Maestría en Inteligencia Artificial, Universidad San Francisco de Quito (USFQ)
