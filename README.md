@@ -37,14 +37,16 @@ Tras la limpieza y el balanceo, el dataset final tiene 5.354 mensajes: 5.155 de 
 - F1-macro en el conjunto de prueba final: 0,565, coherente con el 0,553 de la validación cruzada 10 × 10. Alegría es la clase mejor reconocida (F1 = 0,689) y neutral la peor (0,443); la confusión más frecuente es entre frustración y enojo.
 - Sentence-BERT frente a TF-IDF: +0,059 de F1-macro en el 10 × 10 (0,553 frente a 0,494; IC 95 % [0,039; 0,080]), significativo en ambos tests (p < 0,001, también con el t-test corregido).
 - Aporte de los datos sintéticos: mejoran el F1-macro en los mensajes educativos (0,652 frente a 0,495 en el CV; 0,564 frente a 0,472 en la prueba final), pero la mejora global no es significativa (+0,005; t-test corregido p = 0,064). Como los mensajes educativos de prueba los generaron los mismos modelos (GPT y Gemini), esa mejora no demuestra una adaptación a mensajes de estudiantes reales.
+- Experimento complementario (`analisis_balanced.ipynb`): con un tope de 3.000 ejemplos por clase, el F1-macro de la regresión logística en la misma prueba final sube de 0,565 a 0,595 (diferencia significativa: bootstrap pareado, IC 95 % [0,010; 0,050], y McNemar, p = 0,015).
 
 ## Estructura del repositorio
 
 ```
 .
-├── analisis.ipynb      # Notebook con todo el proyecto (Secciones 1 a 10)
-├── data/               # CSV sintéticos y splits de GoEmotions
-├── instructions/       # Instrucciones usadas para construir cada sección de la notebook
+├── analisis.ipynb           # Notebook con todo el proyecto (Secciones 1 a 10)
+├── analisis_balanced.ipynb  # Variante experimental con un submuestreo menos agresivo (tope de 3.000 por clase)
+├── data/                    # CSV sintéticos y splits de GoEmotions
+├── instructions/            # Instrucciones usadas para construir cada sección de la notebook
 └── README.md
 ```
 
@@ -56,6 +58,8 @@ Tras la limpieza y el balanceo, el dataset final tiene 5.354 mensajes: 5.155 de 
 4. Ejecutar todo: *Entorno de ejecución → Ejecutar todo*. La notebook monta Drive al inicio y pedirá autorización.
 
 Los cálculos costosos (embeddings, estudios de Optuna, validación cruzada 10 × 10 y t-SNE) se guardan en la misma carpeta de Drive y se reutilizan en ejecuciones posteriores mientras el dataset no cambie.
+
+**Notebook experimental (`analisis_balanced.ipynb`).** Necesita su propia carpeta de Drive, `MyDrive/analisis_sentimientos_2/data`, con los dos CSV sintéticos, donde guarda todas sus salidas. Además lee, sin modificarla, la carpeta de datos de la notebook principal (dataset final, embeddings y estudio de Optuna de la regresión logística), así que **la notebook principal debe ejecutarse primero**.
 
 ## Requisitos
 
